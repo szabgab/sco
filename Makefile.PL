@@ -3,10 +3,10 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 my %conf = (
-	NAME         => 'SCO',
+	NAME         => 'MetaCPAN::SCO',
 	AUTHOR       => 'Gabor Szabo <szabgab@cpan.org>',
-	VERSION_FROM => 'lib/SCO.pm',
-    ABSTRACT_FROM => 'lib/SCO.pm',
+	VERSION_FROM => 'lib/MetaCPAN/SCO.pm',
+    ABSTRACT_FROM => 'lib/MetaCPAN/SCO.pm',
 	PREREQ_PM    => {
 	},
 );
@@ -16,28 +16,23 @@ if (eval { ExtUtils::MakeMaker->VERSION(6.3002) }) {
 }
 
 
-#if (eval { ExtUtils::MakeMaker->VERSION(6.46) }) {
-#	$conf{META_MERGE} = {
-#		'meta-spec' => { version => 2 },
-#		resources => {
-#			repository => {
-#				type       => 'git',
-#				url        => 'http://github.com/szabgab/Module-Name.git',
-#				web        => 'http://github.com/szabgab/Module-Name',
-#				license    => 'http://dev.perl.org/licenses/',
-#			},
-#			bugtracker => {
-#				web        => 'http://github.com/szabgab/Module-Name/issues',
-#			},
-#			homepage   => 'http://perlmaven.com/',
-#		},
-#		x_contributors => [
-#			'Peti Bar <petibar@cpan.org>',
-#		],
-#		x_IRC => 'irc://irc.perl.org/#perl',
-#		x_MailingList => 'http://lists.perl.org/list/perl-qa.html',
-#	};
-#}
+if (eval { ExtUtils::MakeMaker->VERSION(6.46) }) {
+	$conf{META_MERGE} = {
+		'meta-spec' => { version => 2 },
+		resources => {
+			repository => {
+				type       => 'git',
+				url        => 'http://github.com/szabgab/MetaCPAN-SCO.git',
+				web        => 'http://github.com/szabgab/MetaCPAN-SCO',
+				license    => 'http://dev.perl.org/licenses/',
+			},
+			bugtracker => {
+				web        => 'http://github.com/szabgab/MetaCPAN-SCO/issues',
+			},
+			homepage   => 'http://perlmaven.com/',
+		},
+	};
+}
 
 my %configure_requires = (
 	'ExtUtils::MakeMaker' => '6.64',
