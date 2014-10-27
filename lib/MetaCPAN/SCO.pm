@@ -1,4 +1,4 @@
-package SCO;
+package MetaCPAN::SCO;
 use strict;
 use warnings;
 
@@ -6,7 +6,7 @@ our $VERSION = '0.01';
 
 =head1 NAME
 
-SCO - search.cpan.org clone
+MetaCPAN::SCO - search.cpan.org clone
 
 =cut
 
