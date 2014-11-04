@@ -8,6 +8,7 @@ my %conf = (
 	VERSION_FROM => 'lib/MetaCPAN/SCO.pm',
     ABSTRACT_FROM => 'lib/MetaCPAN/SCO.pm',
 	PREREQ_PM    => {
+        'Plack::Request' => 0,
 	},
 );
 
