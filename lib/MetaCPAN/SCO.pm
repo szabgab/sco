@@ -59,8 +59,13 @@ sub template {
         POST_PROCESS => 'incl/footer.tt',
     );
 
+use Path::Tiny qw(path);
+use JSON qw(from_json);
+
+    my $totals = from_json path("$root/totals.json")->slurp_utf8;
+
     my $out;
-    $tt->process( "$file.tt", {}, \$out) || die $tt->error();
+    $tt->process( "$file.tt", {totals => $totals}, \$out) || die $tt->error();
 
     return [ 200, [ 'Content-Type' => 'text/html' ], [$out] ];
 }
