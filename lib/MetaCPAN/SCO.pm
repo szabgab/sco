@@ -22,7 +22,10 @@ sub run {
 
         my $request = Plack::Request->new($env);
         if ($request->path_info eq '/') {
-            return template('index');
+            return template('index', { front => 1 });
+        }
+        if ($request->path_info eq '/feedback') {
+            return template('feedback');
         }
         return [ 404, [ 'Content-Type' => 'text/html' ], ['404 Not Found'] ];
 
@@ -43,7 +46,11 @@ sub root {
 }
 
 sub template {
-    my ($file) = @_;
+    my ($file, $vars) = @_;
+    $vars //= {};
+    Carp::confess 'Neet to pass HASH-ref to template()'
+        if ref $vars ne 'HASH';
+    
 
 
     my $root = root();
@@ -63,9 +70,10 @@ use Path::Tiny qw(path);
 use JSON qw(from_json);
 
     my $totals = from_json path("$root/totals.json")->slurp_utf8;
+    $vars->{totals} = $totals;
 
     my $out;
-    $tt->process( "$file.tt", {totals => $totals}, \$out) || die $tt->error();
+    $tt->process( "$file.tt", $vars, \$out) || die $tt->error();
 
     return [ 200, [ 'Content-Type' => 'text/html' ], [$out] ];
 }
