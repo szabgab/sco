@@ -70,8 +70,10 @@ sub template {
 use Path::Tiny qw(path);
 use JSON qw(from_json);
 
-    my $totals = from_json path("$root/totals.json")->slurp_utf8;
-    $vars->{totals} = $totals;
+    eval {
+        my $totals = from_json path("$root/totals.json")->slurp_utf8;
+        $vars->{totals} = $totals;
+    };
 
     my $out;
     $tt->process( "$file.tt", $vars, \$out) || die $tt->error();
