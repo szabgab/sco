@@ -27,7 +27,8 @@ sub run {
         if ($request->path_info eq '/feedback') {
             return template('feedback');
         }
-        return [ 404, [ 'Content-Type' => 'text/html' ], ['404 Not Found'] ];
+        my $reply = template('404');
+        return [ 404, [ 'Content-Type' => 'text/html' ], $reply->[2] ];
 
     };
 
